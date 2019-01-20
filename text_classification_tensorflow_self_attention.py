@@ -249,7 +249,6 @@ with tf.Graph().as_default():
     with tf.name_scope('loss'):
       difference = tf.subtract(tf.matmul(A, A, transpose_b = True), tf.eye(6), name = 'difference')
       penalty = tf.norm(difference, axis = [-2,-1], name = 'penalty')
-      print (penalty.get_shape())
       loss = tf.reduce_mean(tf.nn.weighted_cross_entropy_with_logits(logits = logits, targets = labels, pos_weight = 2.1, name = 'loss_fn') ) + tf.reduce_mean(penalty)
 
 
